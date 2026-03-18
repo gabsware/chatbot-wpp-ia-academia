@@ -3,7 +3,7 @@ import json, os
 from google import genai
 
 # ===== CONFIG IA =====
-client = genai.Client(api_key="AIzaSyA9kSOzsG3b8UTp9bCDma8om_efVWFTO3M")
+client = genai.Client(api_key="chave-api-gemini")
 
 app = Flask(__name__)
 DB_FILE = "db.json"
