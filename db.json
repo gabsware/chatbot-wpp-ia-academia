@@ -1,0 +1,46 @@
+{
+  "usuarios": {
+    "5511919581640@c.us": {
+      "treino": {
+        "segunda": [
+          "agachamento",
+          "leg press"
+        ],
+        "terca": [
+          "supino",
+          "flexao"
+        ],
+        "quarta": [
+          "elevaçao pelvica",
+          "triceps testa"
+        ]
+      },
+      "estado": null,
+      "temp": {}
+    },
+    "83322784981199@lid": {
+      "treino": {
+        "segunda": [
+          "agachamento",
+          "leg press"
+        ],
+        "terca": [
+          "supino",
+          "flexao"
+        ],
+        "quarta": [
+          "rosca direta",
+          "triceps testa"
+        ],
+        "quinta": [],
+        "sexta": [
+          "supino"
+        ],
+        "sabado": [],
+        "domingo": []
+      },
+      "estado": null,
+      "temp": {}
+    }
+  }
+}
