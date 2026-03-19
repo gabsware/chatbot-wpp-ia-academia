@@ -2,13 +2,13 @@ from flask import Flask, request, jsonify
 import json, os
 from google import genai
 
-# ===== CONFIG IA =====
+# gemini beta
 client = genai.Client(api_key="chave-api-gemini")
 
 app = Flask(__name__)
 DB_FILE = "db.json"
 
-# ===== DB =====
+# db
 def load_db():
     if not os.path.exists(DB_FILE):
         return {"usuarios": {}}
@@ -19,7 +19,7 @@ def save_db(db):
     with open(DB_FILE, "w", encoding="utf-8") as f:
         json.dump(db, f, indent=2, ensure_ascii=False)
 
-# ===== IA =====
+# ia
 def perguntar_ia(prompt):
     try:
         response = client.models.generate_content(
@@ -31,7 +31,7 @@ def perguntar_ia(prompt):
         print("ERRO IA:", e)
         return "Erro na IA"
 
-# ===== ROTAS =====
+# rotas
 @app.route("/")
 def home():
     return "Bot online"
@@ -60,23 +60,23 @@ def webhook():
             "0 - Cancelar"
         )
 
-        # ===== RESET =====
+        # reset
         if msg == "menu":
             user_data["estado"] = None
             save_db(db)
             return jsonify({"reply": MENU})
 
-        # ===== CANCELAR =====
+        # cancelar
         if msg == "0":
             user_data["estado"] = None
             save_db(db)
             return jsonify({"reply": "❌ Operação cancelada.\nDigite 'menu'."})
 
-        # ===== TROCA DE OPÇÃO =====
+        # trocar opçao
         if msg in ["1", "2", "3", "4"]:
             user_data["estado"] = None
 
-        # ===== 1 - EXPLICAR =====
+        # 1 explicar
         if msg == "1":
             user_data["estado"] = "explicar"
             save_db(db)
@@ -92,7 +92,7 @@ def webhook():
 
             return jsonify({"reply": resposta})
 
-        # ===== 2 - SUBSTITUIR =====
+        # 2 substituir
         if msg == "2":
             user_data["estado"] = "substituir"
             save_db(db)
@@ -108,7 +108,7 @@ def webhook():
 
             return jsonify({"reply": resposta})
 
-        # ===== 3 - ALONGAMENTO =====
+        # alongamento
         if msg == "3":
             user_data["estado"] = "alongamento"
             save_db(db)
@@ -124,7 +124,7 @@ def webhook():
 
             return jsonify({"reply": resposta})
 
-        # ===== 4 - FORTALECIMENTO =====
+        # fortalecimento
         if msg == "4":
             user_data["estado"] = "fortalecimento"
             save_db(db)
@@ -140,7 +140,7 @@ def webhook():
 
             return jsonify({"reply": resposta})
 
-        # ===== PADRÃO =====
+        # padrao
         return jsonify({"reply": "Digite 'menu' para começar."})
 
     except Exception as e:
